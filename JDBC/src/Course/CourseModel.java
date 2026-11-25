@@ -5,13 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ResourceBundle;
 public class CourseModel {
 	public void add(CourseBean bean) throws SQLException {
 		Connection con = null;
 		try {
+			ResourceBundle rb = ResourceBundle.getBundle("bundle.app");
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db", "root", "root");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db", rb.getString("username"), "root");
 			con.setAutoCommit(false);
 			PreparedStatement ps = con.prepareStatement("INSERT INTO course VALUES(?, ?, ?, ?, ?)");
 			ps.setInt(1, bean.getCourseId());
@@ -21,6 +22,7 @@ public class CourseModel {
 			ps.setString(5, bean.getLevel());
 			int i = ps.executeUpdate();
 			con.commit();
+			
 			System.out.println("record inserted successfully");
 
 		}
