@@ -13,10 +13,10 @@ public class TestUserModel {
 			// testAdd();
 //			testDelete();
 //			testUpdate();
-//			testFindByPk();
+			testFindByPk();
 //			testauthenticate();
 			// testFindbylogin();
-			testSearch();
+			//testSearch();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
